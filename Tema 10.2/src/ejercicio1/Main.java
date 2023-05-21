@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		FileWriter file = null;
 		try {
-			file = new FileWriter("NumerosReales.txt", true);
+			file = new FileWriter("NumerosReales.txt");
 			for (int i = 1; i <= 10; i++) {
 				file.write(i + " ");
 			}

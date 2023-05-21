@@ -49,7 +49,6 @@ public class Main {
 				System.out.println("ERROR: El archivo no se ha podido cerrar");
 			}
 		}
-
 		Scanner reader = null;
 		try {
 			int sumaEdad = 0;
