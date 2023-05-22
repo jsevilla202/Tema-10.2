@@ -25,6 +25,11 @@ public class Main {
 			System.out.println("ERROR: Archivo no encontrado");
 		}finally {
 			try {
+				writer1.flush();
+			} catch (IOException e1) {
+				System.out.println("ERROR: No se ha podido realizar el flush");
+			}
+			try {
 				writer1.close();
 			} catch (IOException e) {
 				System.out.println("ERROR: El archivo no se pudo cerrar");
@@ -53,6 +58,11 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println("ERROR: Archivo no encontrado");
 		}finally {
+			try {
+				writer2.flush();
+			} catch (IOException e1) {
+				System.out.println("ERROR: No se ha podido realizar el flush");
+			}
 			try {
 				writer2.close();
 			} catch (IOException e) {

@@ -24,6 +24,11 @@ public class Main {
 			System.out.println("ERROR: Archivo no encontrado");
 		} finally {
 			try {
+				file.flush();
+			} catch (IOException e1) {
+				System.out.println("ERROR: No se ha podido realizar el flush");
+			}
+			try {
 				file.close();
 			} catch (IOException e) {
 				System.out.println("ERROR: El archivo no se pudo cerrar");

@@ -33,6 +33,11 @@ public class Main {
 				System.out.println("ERROR: No se pudo realizar el flush");
 			}
 			try {
+				try {
+					file.flush();
+				} catch (IOException e1) {
+					System.out.println("ERROR: No se ha podido realizar el flush");
+				}
 				file.close();
 			} catch (IOException e) {
 				System.out.println("ERROR: El archivo no pudo ser cerrado");

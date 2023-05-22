@@ -44,6 +44,11 @@ public class Main {
 		} finally {
 			sc.close();
 			try {
+				try {
+					file.flush();
+				} catch (IOException e1) {
+					System.out.println("ERROR: No se ha podido realizar el flush");
+				}
 				file.close();
 			} catch (IOException e) {
 				System.out.println("ERROR: El archivo no se ha podido cerrar");
