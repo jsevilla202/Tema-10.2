@@ -1,5 +1,6 @@
 package ejercicio5;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -9,10 +10,10 @@ public class Main {
 	public static void main(String[] args) {
 		String nombre = "";
 		int edad;
-		FileWriter file = null;
+		BufferedWriter file = null;
 		Scanner sc = new Scanner(System.in);
 		try {
-			file = new FileWriter("datos.txt", true);
+			file = new BufferedWriter(new FileWriter("datos.txt", true));
 			while (!nombre.equals("fin")) {
 				System.out.print("Inserte el nombre: ");
 				nombre = sc.next();
@@ -20,7 +21,8 @@ public class Main {
 					System.out.print("Inserte la edad: ");
 					edad = sc.nextInt();
 					if(edad>0) {
-						file.write(nombre + " " + edad + "\n");
+						file.write(nombre + " " + edad);
+						file.newLine();
 					}
 				}
 				System.out.println("========================");

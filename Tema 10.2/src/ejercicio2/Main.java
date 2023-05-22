@@ -1,5 +1,6 @@
 package ejercicio2;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,9 +10,9 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		FileWriter file = null;
+		BufferedWriter file = null;
 		try {
-			file = new FileWriter("Enteros.txt");
+			file = new BufferedWriter(new FileWriter("Enteros.txt"));
 			for (int i = 1; i <= 10; i++) {
 				for (int j = 0; j < 2; j++) {
 					file.write(String.valueOf((int) (Math.random() * 100)));
@@ -19,7 +20,7 @@ public class Main {
 					file.write(String.valueOf((int) (Math.random() * 100)));
 					file.write(" ");
 				}
-				file.write("\n");
+				file.newLine();
 				file.write(" ");
 			}
 		} catch (

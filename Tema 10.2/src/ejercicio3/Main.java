@@ -3,6 +3,7 @@ package ejercicio3;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -13,10 +14,10 @@ public class Main {
 		double altura = 1;
 
 		Scanner sc = new Scanner(System.in);
-		FileWriter file = null;
+		BufferedWriter file = null;
 
 		try {
-			file = new FileWriter("Alumnos.txt");
+			file = new BufferedWriter(new FileWriter("Alumnos.txt"));
 			while (!nombre.equals("fin")) {
 				System.out.print("Inserte el nombre del alumno: ");
 				nombre = sc.next();
@@ -29,7 +30,8 @@ public class Main {
 						if (altura > 0) {
 							file.write(nombre + " ");
 							file.write(edad + " ");
-							file.write(String.valueOf(altura) + "\n");
+							file.write(String.valueOf(altura));
+							file.newLine();
 						} else {
 							System.out.println("ERROR: La altura no puede ser negativa");
 						}
