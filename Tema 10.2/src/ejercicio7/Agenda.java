@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Agenda {
-	Map<String, Integer> agenda = new TreeMap<String, Integer>();
+	private Map<String, Integer> agenda = new TreeMap<String, Integer>();
 
 	public void menu() {
 		System.out.println("Agenda Pesonal");
