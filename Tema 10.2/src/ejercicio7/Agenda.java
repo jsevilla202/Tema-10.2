@@ -26,7 +26,7 @@ public class Agenda {
 			i++;
 		}
 		
-		if (i == 9 && agenda.size() < 20 && agenda.containsKey(nombre) == false) {
+		if (i == 9 && agenda.size() < 20) {
 			agenda.put(nombre, numero);
 		} else if (i != 9) {
 			System.out.println("ERROR: Numero no valido");
