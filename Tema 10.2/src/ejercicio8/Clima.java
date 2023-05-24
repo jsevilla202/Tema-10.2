@@ -1,11 +1,46 @@
 package ejercicio8;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Clima {
 	private String[][] tiempo = new String[0][3];
+	private int max = -999999;
+	private int min = 999999;
+
+	public void start() {
+		Scanner sc = null;
+		try {
+			sc = new Scanner(new FileReader("Clima.csv"));
+			int filas = 0;
+			while (sc.hasNextLine()) {
+				sc.nextLine();
+				filas++;
+			}
+
+			String[][] nuevo = new String[filas-1][];
+			
+			sc = new Scanner(new FileReader("Clima.csv"));
+			sc.nextLine();
+			
+			for (int i = 0; sc.hasNextLine(); i++) {
+				String linea = sc.nextLine();
+				String[] temp = linea.split(",");
+				nuevo[i] = temp;
+			}
+
+			this.tiempo = nuevo;
+
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: Archivo no encontrado");
+		} finally {
+			sc.close();
+		}
+	}
 
 	public void menu() {
 		System.out.println("Clima");
@@ -43,17 +78,15 @@ public class Clima {
 	}
 
 	public void mostrar() {
-		int max = 0;
-		int min = 0;
 		System.out.println("Fecha,Temperatura máxima,Temperatura mínima");
 		for (int i = 0; i < tiempo.length; i++) {
 			for (int j = 0; j < tiempo[0].length; j++) {
 				System.out.print(j == 1 || j == 0 ? tiempo[i][j] + "," : tiempo[i][j]);
-				if(j == 1 && max<Integer.valueOf(tiempo[i][j])) {
-					max = Integer.valueOf(tiempo[i][j]);
+				if (i >= 1 && j == 1 && this.max < Integer.valueOf(tiempo[i][j])) {
+					this.max = Integer.valueOf(tiempo[i][j]);
 				}
-				if(j == 2 && min>Integer.valueOf(tiempo[i][j])) {
-					min = Integer.valueOf(tiempo[i][j]);
+				if (i >= 1 && j == 2 && this.min > Integer.valueOf(tiempo[i][j])) {
+					this.min = Integer.valueOf(tiempo[i][j]);
 				}
 			}
 			System.out.println();
@@ -61,18 +94,18 @@ public class Clima {
 		System.out.println("La temperatura maxima ha sido: " + max);
 		System.out.println("La temperatura minima ha sido: " + min);
 	}
-	
+
 	public void salir() {
-		BufferedWriter fw= null;
+		BufferedWriter fw = null;
 		try {
 			fw = new BufferedWriter(new FileWriter("Clima.csv"));
 			fw.write("Fecha,Temperatura máxima,Temperatura mínima");
 			fw.newLine();
 			for (int i = 0; i < tiempo.length; i++) {
 				for (int j = 0; j < tiempo[0].length; j++) {
-					if(j==0||j==1) {
-					fw.write(tiempo[i][j] + ",");
-					}else {
+					if (j == 0 || j == 1) {
+						fw.write(tiempo[i][j] + ",");
+					} else {
 						fw.write(tiempo[i][j]);
 					}
 				}
@@ -80,7 +113,7 @@ public class Clima {
 			}
 		} catch (IOException e) {
 			System.out.println("ERROR: Archivo no encontrado");
-		}finally {
+		} finally {
 			try {
 				fw.flush();
 			} catch (IOException e) {

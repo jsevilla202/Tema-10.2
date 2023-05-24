@@ -14,6 +14,7 @@ public class Main {
 		String fecha;
 		Scanner sc = new Scanner(System.in);
 		Clima clima = new Clima();
+		clima.start();
 		while (opcion != 3) {
 			clima.menu();
 			opcion = sc.nextInt();
